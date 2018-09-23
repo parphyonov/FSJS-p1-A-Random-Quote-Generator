@@ -69,7 +69,7 @@ const quotes = [
     year: 2017,
     tags: ['requirements', 'design', 'programming', 'art']
   }
-]
+];
 
 
 // This function takes an array and returns its element, randomly
@@ -78,14 +78,14 @@ const getRandomQuote = array => {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 
-}
+};
 
 // This functions generates a random number from 0 to 255 for later use in changeBackgroundColor function
 const getRandomColorValue = () => {
 
   return Math.floor(Math.random() * 256);
 
-}
+};
 
 // This function changes the background color of the page and the 'Show another quote' button
 const changeBackgroundColor = () => {
@@ -107,19 +107,19 @@ const changeBackgroundColor = () => {
   panel.style = `border-color: ${rgb}; color: ${rgb};`;
   tags.forEach(function(tag) {
     tag.style = `border-color: ${rgb};`;
-  })
-}
+  });
+};
 
 // This function provides HTML .tags-panel to be used in printQuote function
 const printTags = quote => {
   outputHTML = `<div id="tags-panel">Tags : `;
   quote.tags.forEach(function(tag) {
-    outputHTML += `<span class="tag">${tag}</span>`
+    outputHTML += `<span class="tag">${tag}</span>`;
   });
   outputHTML += `</div>`;
-  
+
   return outputHTML;
-}
+};
 
 // This function makes up HTML code out of randomly chosen quote object from quotes array
 const printQuote = () => {
@@ -147,7 +147,7 @@ const printQuote = () => {
   target.innerHTML = outputHTML;
   changeBackgroundColor();
 
-}
+};
 
 // This event listener will respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
