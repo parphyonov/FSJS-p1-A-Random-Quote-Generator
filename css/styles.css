@@ -74,7 +74,7 @@ body {
   display: inline-block;
   left: 50%;
   margin-left: -6em;
-  bottom: 150px;
+  bottom: 100px;
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
@@ -88,6 +88,21 @@ body {
 
 #loadQuote:focus {
   outline: none;
+}
+
+#tags-panel {
+  width: 100%;
+  color: #36b55c;
+  background-color: #fff;
+  padding: 5px 10px;
+  border: 3px dotted #36b55c;
+}
+
+.tag {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #36b55c;
+  margin: auto 10px;
 }
 
 @media (max-width: 420px) {
