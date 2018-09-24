@@ -1,4 +1,5 @@
 // FSJS - Random Quote Generator
+const usedQuotes = [];
 
 // An array of quotes used later in the app
 const quotes = [
@@ -124,28 +125,39 @@ const printTags = quote => {
 // This function makes up HTML code out of randomly chosen quote object from quotes array
 const printQuote = () => {
 
-  // Getting a random quote object
-  const randomQuote = getRandomQuote(quotes);
+  if (usedQuotes.length !== quotes.length) {
+    // Getting a random quote object
+    const randomQuote = getRandomQuote(quotes);
 
-  // Making up HTML
-  let outputHTML = `<p class="quote">${randomQuote.quote}</p>`;
-  outputHTML += `<p class="source">${randomQuote.source}`;
-  // If randomQuote.citation exists and is not an empty string, additional HTML will be added
-  if (randomQuote.citation || randomQuote.citation != '') {
-    outputHTML += `<span class="citation">${randomQuote.citation}</span>`;
-  }
-  // If randomQuote.year exists, additional HTML will be added
-  if (randomQuote.year) {
-    outputHTML += `<span class="year">${randomQuote.year}`;
-  }
-  outputHTML += printTags(randomQuote);
-  // No matter if additional HTML is added p.source gets its closing tag
-  outputHTML += `</p>`;
+    if (usedQuotes.includes(randomQuote)) {
+      printQuote();
+    } else {
+      usedQuotes.push(randomQuote);
 
-  // Targeting #quote-box and updating its HTML content
-  const target = document.getElementById('quote-box');
-  target.innerHTML = outputHTML;
-  changeBackgroundColor();
+      // Making up HTML
+      let outputHTML = `<p class="quote">${randomQuote.quote}</p>`;
+      outputHTML += `<p class="source">${randomQuote.source}`;
+      // If randomQuote.citation exists and is not an empty string, additional HTML will be added
+      if (randomQuote.citation || randomQuote.citation != '') {
+        outputHTML += `<span class="citation">${randomQuote.citation}</span>`;
+      }
+      // If randomQuote.year exists, additional HTML will be added
+      if (randomQuote.year) {
+        outputHTML += `<span class="year">${randomQuote.year}`;
+      }
+      outputHTML += printTags(randomQuote);
+      // No matter if additional HTML is added p.source gets its closing tag
+      outputHTML += `</p>`;
+
+      // Targeting #quote-box and updating its HTML content
+      const target = document.getElementById('quote-box');
+      target.innerHTML = outputHTML;
+      changeBackgroundColor();
+    }
+  } else {
+    window.clearInterval(interval);
+    document.write(`<h1>These were all the quotes we've got ready for you today! Come see us in a little while!`);
+  }
 
 };
 
@@ -153,4 +165,4 @@ const printQuote = () => {
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-window.setInterval(printQuote, 5000);
+const interval = window.setInterval(printQuote, 5000);
