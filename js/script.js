@@ -125,13 +125,17 @@ const printTags = quote => {
 // This function makes up HTML code out of randomly chosen quote object from quotes array
 const printQuote = () => {
 
+  // If not all quotes have been displayed, a random quote gets activated
   if (usedQuotes.length !== quotes.length) {
     // Getting a random quote object
     const randomQuote = getRandomQuote(quotes);
 
+    // If a quote has already been displayed, a function calls itself one more time
     if (usedQuotes.includes(randomQuote)) {
+      // Calls itself
       printQuote();
     } else {
+      // A random quote shown for the first time adds to the array of displayed quotes
       usedQuotes.push(randomQuote);
 
       // Making up HTML
@@ -154,6 +158,7 @@ const printQuote = () => {
       target.innerHTML = outputHTML;
       changeBackgroundColor();
     }
+  // After all quotes are shown, a message is displayed and the interval resets
   } else {
     window.clearInterval(interval);
     document.write(`<h1>These were all the quotes we've got ready for you today! Come see us in a little while!`);
