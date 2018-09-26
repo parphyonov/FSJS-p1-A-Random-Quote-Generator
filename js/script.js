@@ -82,11 +82,7 @@ const getRandomQuote = array => {
 };
 
 // This functions generates a random number from 0 to 255 for later use in changeBackgroundColor function
-const getRandomColorValue = () => {
-
-  return Math.floor(Math.random() * 256);
-
-};
+const getRandomColorValue = () => Math.floor(Math.random() * 256);
 
 // This function changes the background color of the page and the 'Show another quote' button
 const changeBackgroundColor = () => {
